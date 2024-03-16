@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """
-The basics of asynchronous programming.
+Async Generator: Generates random numbers asynchronously.
 """
 
 import asyncio
 import random
+import typing
 
-async def wait_random(max_delay: int = 10) -> float:
+
+async def async_generator() -> typing.Generator[float, None, None]:
     """
-    Asynchronous coroutine that generates a random delay.
+    Asynchronous generator that yields random numbers.
     """
-    delay = random.uniform(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
+    for _ in range(10):
+        random_number = random.uniform(0, 10)
+        await asyncio.sleep(1)
+        yield random_number
